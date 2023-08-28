@@ -117,17 +117,19 @@ SELECT * FROM usuarios WHERE nome LIKE 'Jo_o%';
 ~~~
 
 ### Operadores SQL
-+ = (igualdade)
-+ <> ou != (desigualdade)
-+ > (maior que)
-+ < (menor que)
-+ >= (maior ou igual que)
-+ <= (menor ou igual que)
-+ LIKE (comparação de padrões)
-+ IN (pertence a uma lista de valores)
-+ BETWEEN (dentro de um intervalo)
-+ AND (e lógico)
-+ OR (ou lógico)
+<ul>
+    <li>= (igualdade)</li>
+    <li><> ou != (desigualdade)</li>
+    <li>> (maior que)</li>
+    <li>< (menor que)</li>
+    <li>>= (maior ou igual que)</li>
+    <li><= (menor ou igual que)</li>
+    <li>LIKE (comparação de padrões)</li>
+    <li>IN (pertence a uma lista de valores)</li>
+    <li>BETWEEN (dentro de um intervalo)</li>
+    <li>AND (e lógico)</li>
+    <li>OR (ou lógico)</li>
+</ul>
 
 ### Comando: UPDATE e DELETE
 UPDATE {{ tabela }}
@@ -196,16 +198,33 @@ Retorna apenas as linhas que têm correspondência em ambas as tabelas envolvida
 <p align="center"><img src="./images/diagrama-inner-join.png"></p>
 
 SELECT * FROM tabela1 INNER JOIN tabela2 ON tabela1.coluna = tabela2.coluna;
+~~~SQL
+-- Traz apenas os usuario com reservas
+SELECT * FROM usuarios us INNER JOIN reservas rs ON us.id = rs.id_usuario;
+
+-- Traz todos os usuario e suas reservas se tiver
+SELECT * FROM usuarios us INNER JOIN reservas rs ON us.id = rs.id_usuario;
+~~~
 
 #### LEFT JOIN ou LEFT OUTER JOIN
 Retorna todas as linhas da tabela à esquerda da junção e as linhas correspondentes da tabela à direita. Se não houver correspondência, os valores da tabela à direita serão NULL.
 <p align="center"><img src="./images/diagrama-left-join.png"></p>
 SELECT * FROM tabela1 LEFT JOIN tabela2 ON tabela1.coluna = tabela2.coluna;
 
+~~~SQL
+SELECT * FROM destinos des LEFT JOIN reservas rs ON des.id = rs.id_destino;
+~~~
+
 ### RIGHT JOIN ou RIGHT OUTER JOIN
 Retorna todas as linhas da tabela à direita da junção e as linhas correspondentes da tabela à esquerda. Se não houver correspondência, os valores da tabela à esquerda serão NULL.
 <p align="center"><img src="./images/diagrama-right-join.png"></p>
 SELECT * FROM tabela1 RIGHT JOIN tabela2 ON tabela1.coluna = tabela2.coluna;
+
+~~~SQL
+SELECT * FROM reservas rs
+RIGHT JOIN destinos des
+	ON des.id = rs.id_destino;
+~~~
 
 ### FULL JOIN ou FULL OUTER JOIN
 Retorna todas as linhas de ambas as tabelas envolvidas na junção, combinando-as com base em uma condição de igualdade. Se não houver correspondência, os valores ausentes serão preenchidos com NULL.
